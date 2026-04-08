@@ -6,7 +6,7 @@
       "tech": ["Astro", "CSS", "JavaScript"],
       "demo": "https://chinabeijing.vercel.app/",
       "code": "https://github.com/holfolzg/ChinaBeijing",
-      "image": "/restauranteChinaBeijing.png"
+      "image": "/restauranteChinaBeijing.webp"
     },
     {
       "title": "Porfolio Minimalista",
@@ -14,7 +14,7 @@
       "tech": ["Astro", "TypeScript"],
       "demo": "https://mi-cv-gray.vercel.app/",
       "code": "https://github.com/holfolzg/miCv",
-      "image": "/portfolio.png"
+      "image": "/portfolio.webp"
     },
     {
       "title": "PokeApi",
@@ -22,7 +22,7 @@
       "tech": ["Html", "Css", "JavaScript"],
       "demo": "https://holfolzg.github.io/POKEAPI/",
       "code": "https://github.com/holfolzg/POKEAPI",
-      "image": "/pokeApi.png"
+      "image": "/pokeApi.webp"
     }
   ]
 }
