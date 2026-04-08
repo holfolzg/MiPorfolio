@@ -1,0 +1,233 @@
+---
+---
+
+<header>
+	<nav class="nav-container">
+		<ul class="nav-links">
+			<li><a href="#hero">Inicio</a></li>
+			<li><a href="#about">Sobre mí</a></li>
+			<!-- <li><a href="#experiencia">Experiencia</a></li> -->
+			<li><a href="#proyectos">Proyectos</a></li>
+			<li><a href="#skills">Habilidades</a></li>
+			<li><a href="#contact">Contacto</a></li>
+		</ul>
+
+		<!-- Botón hamburguesa -->
+		<button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+	</nav>
+
+	<!-- Menú móvil -->
+	<div class="nav-mobile" aria-hidden="true">
+		<ul>
+			<li><a href="#hero">Inicio</a></li>
+			<li><a href="#about">Sobre mí</a></li>
+			<li><a href="#experiencia">Experiencia</a></li>
+			<li><a href="#proyectos">Proyectos</a></li>
+			<li><a href="#skills">Habilidades</a></li>
+			<li><a href="#contact">Contacto</a></li>
+		</ul>
+	</div>
+</header>
+
+<script>
+	const toggle = document.querySelector('.nav-toggle') as HTMLButtonElement;
+	const mobileMenu = document.querySelector('.nav-mobile') as HTMLElement;
+	const mobileLinks = document.querySelectorAll('.nav-mobile a');
+
+	// Abrir / cerrar menú
+	toggle.addEventListener('click', () => {
+		const isOpen = mobileMenu.classList.toggle('is-open');
+		toggle.classList.toggle('is-open');
+		toggle.setAttribute('aria-expanded', String(isOpen));
+		mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+	});
+
+	// Cerrar al hacer click en un link
+	mobileLinks.forEach(link => {
+		link.addEventListener('click', () => {
+			mobileMenu.classList.remove('is-open');
+			toggle.classList.remove('is-open');
+			toggle.setAttribute('aria-expanded', 'false');
+			mobileMenu.setAttribute('aria-hidden', 'true');
+		});
+	});
+
+	// Active link al hacer scroll
+	const sections = document.querySelectorAll('section[id]');
+	const navLinks = document.querySelectorAll('.nav-links a, .nav-mobile a');
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					navLinks.forEach(link => {
+						link.classList.remove('active');
+						if (link.getAttribute('href') === `#${entry.target.id}`) {
+							link.classList.add('active');
+						}
+					});
+				}
+			});
+		},
+		{ threshold: 0.4 }
+	);
+
+	sections.forEach(section => observer.observe(section));
+</script>
+
+<style>
+	header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+		border-bottom: 1px solid transparent;
+		transition: border-color var(--transition-base), background var(--transition-base), backdrop-filter var(--transition-base);
+	}
+
+	/* Efecto glassmorphism al hacer scroll — se activa con JS si quieres, 
+	   pero con :has o simplemente siempre activo es suficiente */
+	header {
+		background: rgba(10, 10, 12, 0.75);
+		backdrop-filter: blur(14px);
+		-webkit-backdrop-filter: blur(14px);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	/* ─── NAV CONTAINER ─────────────────────────────────────── */
+	.nav-container {
+		max-width: var(--max-width);
+		margin-inline: auto;
+		padding-inline: clamp(1.25rem, 5vw, 3rem);
+		height: 64px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	
+	/* ─── LINKS DESKTOP ─────────────────────────────────────── */
+	.nav-links {
+		display: none;
+		list-style: none;
+		gap: 0.25rem;
+	}
+
+	.nav-links a {
+		font-family: var(--font-mono);
+		font-size: 0.8rem;
+		letter-spacing: 0.06em;
+		color: var(--color-text-muted);
+		padding: 0.4rem 0.75rem;
+		border-radius: 6px;
+		border: 1px solid transparent;
+		transition: all var(--transition-fast);
+		opacity: 1;
+	}
+	.nav-links a:hover {
+		color: var(--color-text);
+		background: var(--color-surface-2);
+		border-color: var(--color-border);
+	}
+	.nav-links a.active {
+		color: var(--color-accent);
+		background: var(--color-purple-dim);
+		border-color: var(--color-purple-line);
+	}
+
+	/* ─── HAMBURGUESA ───────────────────────────────────────── */
+	.nav-toggle {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 5px;
+		width: 36px;
+		height: 36px;
+		background: transparent;
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+		cursor: pointer;
+		padding: 8px;
+		transition: border-color var(--transition-fast);
+	}
+	.nav-toggle:hover {
+		border-color: var(--color-purple-line);
+	}
+	.nav-toggle span {
+		display: block;
+		width: 100%;
+		height: 1.5px;
+		background: var(--color-text-muted);
+		border-radius: 2px;
+		transition: transform var(--transition-base), opacity var(--transition-base);
+		transform-origin: center;
+	}
+
+	/* Animación X al abrir */
+	.nav-toggle.is-open span:nth-child(1) {
+		transform: translateY(6.5px) rotate(45deg);
+	}
+	.nav-toggle.is-open span:nth-child(2) {
+		opacity: 0;
+		transform: scaleX(0);
+	}
+	.nav-toggle.is-open span:nth-child(3) {
+		transform: translateY(-6.5px) rotate(-45deg);
+	}
+
+	/* ─── MENÚ MÓVIL ────────────────────────────────────────── */
+	.nav-mobile {
+		overflow: hidden;
+		max-height: 0;
+		transition: max-height var(--transition-slow);
+		background: var(--color-surface);
+		border-bottom: 1px solid var(--color-border);
+	}
+	.nav-mobile.is-open {
+		max-height: 400px;
+	}
+
+	.nav-mobile ul {
+		list-style: none;
+		padding: 1rem 0;
+	}
+	.nav-mobile a {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 0.85rem;
+		letter-spacing: 0.06em;
+		color: var(--color-text-muted);
+		padding: 0.85rem clamp(1.25rem, 5vw, 3rem);
+		border-left: 2px solid transparent;
+		transition: all var(--transition-fast);
+		opacity: 1;
+	}
+	.nav-mobile a:hover {
+		color: var(--color-text);
+		background: var(--color-surface-2);
+		border-left-color: var(--color-border-soft);
+	}
+	.nav-mobile a.active {
+		color: var(--color-accent);
+		border-left-color: var(--color-purple);
+		background: rgba(124, 58, 237, 0.06);
+	}
+
+	/* ─── DESKTOP ───────────────────────────────────────────── */
+	@media (min-width: 768px) {
+		.nav-links {
+			display: flex;
+		}
+		.nav-toggle {
+			display: none;
+		}
+		.nav-mobile {
+			display: none;
+		}
+	}
+</style>

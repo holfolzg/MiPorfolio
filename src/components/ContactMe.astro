@@ -1,0 +1,256 @@
+<section class="contact" id="contact">
+  <div class="contact-container">
+
+    <p class="contact-label">Contacto</p>
+    <h2 class="contact-title">Hablemos</h2>
+    <p class="contact-description">
+      ¿Tienes un proyecto en mente o quieres trabajar juntos? Escríbeme y te respondo pronto.
+    </p>
+
+    <form class="contact-form" id="contactForm">
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" id="name" name="name" placeholder="Tu nombre" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Correo</label>
+        <input type="email" id="email" name="email" placeholder="tu@correo.com" required />
+      </div>
+
+      <div class="form-group">
+        <label for="message">Mensaje</label>
+        <textarea id="message" name="message" rows="5" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn primary" id="submitBtn">
+          <span id="btnText">Enviar mensaje</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/>
+          </svg>
+        </button>
+
+        
+          <a href="https://wa.me/573161703178?text=Hola%20Jhoan,%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte"
+          target="_blank"
+          class="btn whatsapp"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.52 3.48A11.8 11.8 0 0 0 12.03 0C5.39 0 .02 5.37.02 12c0 2.11.55 4.18 1.6 6.01L0 24l6.18-1.62A11.95 11.95 0 0 0 12.03 24c6.64 0 12.01-5.37 12.01-12 0-3.2-1.25-6.21-3.52-8.52zM12.03 21.8c-1.8 0-3.56-.48-5.1-1.38l-.36-.21-3.67.96.98-3.58-.24-.37a9.8 9.8 0 0 1-1.5-5.22c0-5.42 4.41-9.83 9.83-9.83 2.63 0 5.1 1.02 6.96 2.88a9.78 9.78 0 0 1 2.88 6.95c0 5.42-4.41 9.83-9.83 9.83zm5.4-7.37c-.3-.15-1.76-.87-2.03-.97-.27-.1-.46-.15-.66.15-.2.3-.76.97-.93 1.17-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.46-.88-.78-1.47-1.74-1.64-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.34.44-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.9-2.19-.23-.56-.46-.48-.66-.49h-.56c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.87 1.2 3.07c.15.2 2.08 3.18 5.05 4.46.71.31 1.26.5 1.7.64.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.56-.35z"/>
+          </svg>
+          WhatsApp
+        </a>
+      </div>
+
+      <p class="form-feedback" id="formFeedback"></p>
+    </form>
+
+  </div>
+
+  <script>
+    const form = document.getElementById('contactForm') as HTMLFormElement;
+    const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
+    const btnText = document.getElementById('btnText')!;
+    const feedback = document.getElementById('formFeedback')!;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      btnText.textContent = 'Enviando...';
+      submitBtn.disabled = true;
+      feedback.textContent = '';
+      feedback.className = 'form-feedback';
+
+      try {
+        const res = await fetch('https://formspree.io/f/mbdpbdqn', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form),
+        });
+
+        if (res.ok) {
+          feedback.textContent = '¡Mensaje enviado! Te respondo pronto.';
+          feedback.classList.add('success');
+          form.reset();
+        } else {
+          throw new Error();
+        }
+      } catch {
+        feedback.textContent = 'Hubo un error al enviar. Intenta de nuevo.';
+        feedback.classList.add('error');
+      } finally {
+        btnText.textContent = 'Enviar mensaje';
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+  </section>
+
+  <style>
+    .contact {
+      padding: var(--section-gap) 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 350px;
+      background: radial-gradient(ellipse, var(--color-purple-glow), transparent 70%);
+      z-index: 0;
+    }
+
+    .contact-container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .contact-label {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-description {
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 0.7rem 1rem;
+      font-size: 0.95rem;
+      color: var(--color-text);
+      font-family: var(--font-sans);
+      transition: border-color var(--transition-base), box-shadow var(--transition-base);
+      resize: none;
+      outline: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--color-purple);
+      box-shadow: 0 0 0 3px var(--color-purple-glow);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--color-text-muted);
+      opacity: 0.5;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition-base);
+      text-decoration: none;
+    }
+
+    .btn.primary {
+      background: var(--color-purple);
+      color: white;
+      border-color: var(--color-purple);
+    }
+
+    .btn.primary:hover:not(:disabled) {
+      opacity: 0.85;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px var(--color-purple-glow);
+    }
+
+    .btn.primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .btn.whatsapp {
+      background: transparent;
+      color: #25d366;
+      border-color: #25d366;
+    }
+
+    .btn.whatsapp:hover {
+      background: #25d36615;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px #25d36625;
+    }
+
+    .form-feedback {
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      min-height: 1.2rem;
+    }
+
+    .form-feedback.success { color: #4ade80; }
+    .form-feedback.error   { color: #f87171; }
+
+    @media (max-width: 768px) {
+      .contact { padding: 4rem 1.2rem; }
+
+      .form-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>

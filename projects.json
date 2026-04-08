@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "title": "China Beijing Menu Web",
+      "description": "Sitio web moderno para restaurante Chino, enfocado en conversión y experiencia de usuario.",
+      "tech": ["Astro", "CSS", "JavaScript"],
+      "demo": "https://chinabeijing.vercel.app/",
+      "code": "https://github.com/holfolzg/ChinaBeijing",
+      "image": "/restauranteChinaBeijing.png"
+    },
+    {
+      "title": "Porfolio Minimalista",
+      "description": "Diseño limpio y optimizado para mostrar proyectos de desarrollo frontend.",
+      "tech": ["Astro", "TypeScript"],
+      "demo": "https://mi-cv-gray.vercel.app/",
+      "code": "https://github.com/holfolzg/miCv",
+      "image": "/portfolio.png"
+    },
+    {
+      "title": "PokeApi",
+      "description": "PokeApi Basada En El Tutorial De FreeCodeCamp.",
+      "tech": ["Html", "Css", "JavaScript"],
+      "demo": "https://holfolzg.github.io/POKEAPI/",
+      "code": "https://github.com/holfolzg/POKEAPI",
+      "image": "/pokeApi.png"
+    }
+  ]
+}

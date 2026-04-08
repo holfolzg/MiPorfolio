@@ -1,23 +1,145 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="description" content="Portafolio de Jhoan S Alzate A — Desarrollador" />
+		<title>Jhoan S Alzate A</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
 
-<style>
-	html,
-	body {
+<style is:global>
+	/* ─── TOKENS ──────────────────────────────────────────────── */
+	:root {
+		/* Fondos */
+		--color-bg:          #0a0a0c;
+		--color-surface:     #111116;
+		--color-surface-2:   #18181f;
+
+		/* Bordes */
+		--color-border:      #1e1e28;
+		--color-border-soft: #252530;
+
+		/* Púrpura */
+		--color-purple:      #7c3aed;
+		--color-purple-soft: #6d28d9;
+		--color-purple-dim:  #3b1d72;
+		--color-purple-glow: rgba(124, 58, 237, 0.18);
+		--color-purple-line: rgba(124, 58, 237, 0.4);
+
+		/* Texto */
+		--color-text:        #e8e8f0;
+		--color-text-muted:  #8888a0;
+		--color-text-faint:  #44445a;
+		--color-accent:      #a78bfa;
+
+		/* Tipografía */
+		--font-display: 'Syne', sans-serif;
+		--font-body:    'Outfit', sans-serif;
+		--font-mono:    'DM Mono', monospace;
+
+		/* Transiciones */
+		--transition-fast: 150ms ease;
+		--transition-base: 250ms ease;
+		--transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+
+		/* Layout */
+		--max-width:   1200px;
+		--section-gap: clamp(5rem, 12vw, 9rem);
+	}
+
+	/* ─── RESET ───────────────────────────────────────────────── */
+	*, *::before, *::after {
+		box-sizing: border-box;
 		margin: 0;
-		width: 100%;
-		height: 100%;
+		padding: 0;
+	}
+
+	/* ─── BASE ────────────────────────────────────────────────── */
+	html {
+		scroll-behavior: smooth;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	body {
+		min-height: 100vh;
+		background-color: var(--color-bg);
+		color: var(--color-text);
+		font-family: var(--font-body);
+		font-size: 1rem;
+		line-height: 1.65;
+		overflow-x: hidden;
+		background-image: radial-gradient(
+			ellipse 80% 50% at 50% -10%,
+			var(--color-purple-glow),
+			transparent
+		);
+		background-attachment: fixed;
+	}
+
+	/* ─── TIPOGRAFÍA ──────────────────────────────────────────── */
+	h1, h2, h3, h4, h5, h6 {
+		font-family: var(--font-display);
+		font-weight: 700;
+		line-height: 1.15;
+		letter-spacing: -0.02em;
+		color: var(--color-text);
+	}
+
+	p {
+		color: var(--color-text-muted);
+		line-height: 1.75;
+	}
+
+	a {
+		color: var(--color-accent);
+		text-decoration: none;
+		transition: opacity var(--transition-fast);
+	}
+	a:hover { opacity: 0.8; }
+
+	img, video {
+		max-width: 100%;
+		height: auto;
+		display: block;
+	}
+
+	code, kbd, pre {
+		font-family: var(--font-mono);
+		font-size: 0.9em;
+	}
+
+	/* ─── SELECCIÓN Y SCROLLBAR ───────────────────────────────── */
+	::selection {
+		background: var(--color-purple-dim);
+		color: var(--color-text);
+	}
+
+	::-webkit-scrollbar { width: 6px; }
+	::-webkit-scrollbar-track { background: var(--color-bg); }
+	::-webkit-scrollbar-thumb {
+		background: var(--color-purple-dim);
+		border-radius: 3px;
+	}
+	::-webkit-scrollbar-thumb:hover { background: var(--color-purple); }
+
+	/* ─── FOCUS ───────────────────────────────────────────────── */
+	:focus-visible {
+		outline: 2px solid var(--color-purple);
+		outline-offset: 3px;
 	}
 </style>

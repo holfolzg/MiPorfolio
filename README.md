@@ -1,46 +1,36 @@
-# Astro Starter Kit: Basics
+# 🚀 Portafolio - Jhoan S Alzate
 
-```sh
-npm create astro@latest -- --template basics
-```
+Portafolio web desarrollado con **Astro**, enfocado en alto rendimiento, diseño minimalista y optimización SEO. Diseñado para mostrar proyectos, habilidades y facilitar el contacto con potenciales clientes.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+## 🧠 Tecnologías utilizadas
 
-Inside of your Astro project, you'll see the following folders and files:
+- Astro
+- HTML5 / CSS3
+- JavaScript
+- Formspree (formulario de contacto)
+- Vercel (deploy)
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+---
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## ⚡ Características
 
-## 🧞 Commands
+- ⚡ Sitio ultra rápido (Astro)
+- 🎨 Diseño moderno
+- 📱 Responsive (mobile-first)
+- 🧩 Componentes reutilizables
+- 📊 Renderizado optimizado
+- 📬 Formulario de contacto funcional
+- 🔍 Optimización SEO básica
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 📂 Estructura del proyecto
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```bash
+/src
+  /components
+  /layouts
+  /pages
+/public
