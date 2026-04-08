@@ -23,6 +23,14 @@
       "demo": "https://holfolzg.github.io/POKEAPI/",
       "code": "https://github.com/holfolzg/POKEAPI",
       "image": "/pokeApi.webp"
+    },
+    {
+      "title": "QR Generator Sin Ads",
+      "description": "Generador de códigos QR sin anuncios, simple y eficiente.",
+      "tech": ["Html", "React", "JavaScript"],
+      "demo": "https://qrgeneradorsinadds.vercel.app/",
+      "code": "https://github.com/holfolzg/QrGenerador",
+      "image": "/qrGenerator.webp"
     }
   ]
 }
